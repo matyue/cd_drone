@@ -1,0 +1,49 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1779725530",
+        "python_version": "3.10.12 | packaged by Anaconda, Inc. | (main, Jul  5 2023, 19:01:18) [MSC v.1916 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\m0t0\\miniconda3\\envs\\mlagents\\Scripts\\mlagents-learn configuration.yaml --run-id=build1 --env=build\\cd drone.exe --resume",
+        "mlagents_version": "1.1.0",
+        "mlagents_envs_version": "1.1.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.2.2+cu121",
+        "numpy_version": "1.23.5",
+        "end_time_seconds": "1779725539"
+    },
+    "total": 8.98271609999938,
+    "count": 1,
+    "self": 1.0953920999891125,
+    "children": {
+        "run_training.setup": {
+            "total": 0.09009400004288182,
+            "count": 1,
+            "self": 0.09009400004288182
+        },
+        "TrainerController.start_learning": {
+            "total": 7.797229999967385,
+            "count": 1,
+            "self": 8.599995635449886e-05,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 7.453329700045288,
+                    "count": 1,
+                    "self": 7.453329700045288
+                },
+                "TrainerController._save_models": {
+                    "total": 0.343814299965743,
+                    "count": 1,
+                    "self": 0.06889950000913814,
+                    "children": {
+                        "RLTrainer._checkpoint": {
+                            "total": 0.27491479995660484,
+                            "count": 1,
+                            "self": 0.27491479995660484
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
