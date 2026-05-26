@@ -76,7 +76,18 @@ public class SignalDetector : MonoBehaviour
                 });
 
         }
-        VisibleContacts.Sort((a, b) => b.signalStrength.CompareTo(a.signalStrength));
+        VisibleContacts.Sort((a, b) =>
+        {
+            int pa = FlagPriority(a.flag);
+            int pb = FlagPriority(b.flag);
+
+            int compare = pb.CompareTo(pa);
+
+            if (compare != 0)
+                return compare;
+
+            return b.signalStrength.CompareTo(a.signalStrength);
+        });
     }
 
     public SignalContact GetBestContact(int index)

@@ -37,7 +37,7 @@ public class DroneAgent : Agent
     public override void OnEpisodeBegin()
     {
 
-        
+
         episode++;
         Debug.Log($"EPISODE: {episode} ");
         reward = 0;
@@ -92,7 +92,7 @@ public class DroneAgent : Agent
                 //Debug.Log($"{i} {best.signalStrength}");
                 sensor.AddObservation(localDir);
                 sensor.AddObservation(best.signalStrength);
-                sensor.AddObservation(0f); //флаг цели
+                sensor.AddObservation(best.flag / 3f); //флаг цели
 
             }
             else
@@ -104,7 +104,7 @@ public class DroneAgent : Agent
             }
         }
 
-        sensor.AddObservation(0f); // собственный флаг
+        sensor.AddObservation(connectivity.CurrentFlag / 3f); // собственный флаг
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -164,7 +164,7 @@ public class DroneAgent : Agent
             EndEpisode();
         }
 
-        
+        /*
         var a = signalDetector.GetBestContact(0);
         var b = signalDetector.GetBestContact(1);
 
@@ -212,8 +212,50 @@ public class DroneAgent : Agent
             }
 
             AddReward(minSignal * 0.01f);
-        } 
-        
+        } */
+        if (connectivity.CurrentFlag == 3)
+        {
+            AddReward(0.02f);
+            connectionTimer[0] += Time.fixedDeltaTime;
+        }
+        else
+        {
+            connectionTimer[0] = 0f;
+        }
+        if (connectionTimer[0] > 10f)
+        {
+            AddReward(10f);
+            Debug.Log("victory!");
+            EndEpisode();
+        }
+        switch (connectivity.CurrentFlag)
+        {
+            case 1:
+                AddReward(0.005f);
+                break;
+            case 2:
+                AddReward(0.002f);
+                break;
+
+        }
+        foreach (var contact in signalDetector.VisibleContacts)
+        {
+            AddReward(contact.signalStrength * 0.001f);
+        }
+        if (signalDetector.VisibleContacts.Count > 0)
+        {
+            float minSignal = float.MaxValue;
+
+            foreach (var contact in signalDetector.VisibleContacts)
+            {
+                minSignal = Mathf.Min(
+                    minSignal,
+                    contact.signalStrength
+                );
+            }
+
+            AddReward(minSignal * 0.0025f);
+        }
 
     }
 
