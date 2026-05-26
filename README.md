@@ -1,23 +1,14 @@
 # cd_drone
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Unity Version](https://img.shields.io/badge/Unity-2021.3%2B-blue)](https://unity.com/)
-[![ML Agents](https://img.shields.io/badge/ML--Agents-2.0.0+-green)](https://github.com/Unity-Technologies/ml-agents)
+[Chat1](https://chatgpt.com/share/6a15cb41-4bb0-83eb-a0a0-fde5c78edcba)
+[Chat2](https://chatgpt.com/share/6a15da3c-b800-83eb-b922-8c08368bbfd5)
+[Chat3](https://chat.deepseek.com/share/revkrdrpro7iajc28o)
+
 
 > **Автономный дрон-ретранслятор** для поддержания связи в роевых системах. Проект включает 3 этапа обучения ML-агента, физическую симуляцию полёта и управление через точечные силы моторов.
 
 ---
 
-## 📋 Оглавление
-- [Особенности проекта](#-особенности-проекта)
-- [Архитектура обучения](#-архитектура-обучения)
-- [Управление дроном](#-управление-дроном)
-- [Сборка](#-сборка)
-- [Запуск](#-запуск)
-- [Структура проекта](#-структура-проекта)
-- [Планы по развитию](#-планы-по-развитию)
-
----
 
 ## ✨ Особенности проекта
 
@@ -48,8 +39,6 @@
 
 Дрон управляется в **физической симуляции** с применением реалистичных сил:
 
-```mermaid
-graph TD
     A[Точки приложения сил] --> B[4 мотора (квадрокоптер)];
     B --> C[Суммарный вектор тяги];
     C --> D[Перемещение + Вращение];
